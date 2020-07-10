@@ -1,10 +1,24 @@
 import React, { Component } from "react";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, CircularProgress, Box  } from "@material-ui/core";
 import { checkValidity } from "@/Shared/utility";
+import { connect } from "react-redux";
+import { PsyTestsState } from "@/rdx/store";
+import * as adminCreateActions from "@/rdx/createAdmin/createAdminActions";
+import { userLoggedIn } from "@/rdx/userLogin/userLoginActions";
 
-type RawLoginProps =  {
-  tabId: number;
-};
+const mapStateToProps = (state: PsyTestsState, ownProps: { tabId: number }) => {
+  return {
+    tabId: ownProps.tabId,
+    creationInProgress: state.createAdmin.isCreating || state.userLogin.userisLogging
+  }
+}
+
+const mapDispatchToProps = {
+  createAdmin: adminCreateActions.createAdmin,
+  signin: userLoggedIn
+}
+
+type RawLoginProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 type RawLoginState = {
   inputs: {
@@ -21,7 +35,7 @@ type RawLoginState = {
   }
 }
 
-export class Login extends Component<RawLoginProps, RawLoginState > {
+class RawLogin extends Component<RawLoginProps, RawLoginState > {
   state = {
     inputs: {
       email: {
@@ -82,13 +96,20 @@ export class Login extends Component<RawLoginProps, RawLoginState > {
       }
     });
 
-    console.log(email.value, password.value);
+    if (isEmailValid && isPasswordValid) {
+      if (this.props.tabId === 0) {
+        this.props.signin({ email: email.value, password: password.value })
+      } else {
+        this.props.createAdmin({ email: email.value, password: password.value });
+      }
+    }
   }
 
   render() {
     const { tabId } = this.props;
     const isValidEmail = this.state.inputs.email.valid;
     const isValidPass = this.state.inputs.password.valid;
+    const creatingInProgress = this.props.creationInProgress;
 
     return (
       <form autoComplete="off" onSubmit={this.onSubmitHandler}>
@@ -121,20 +142,26 @@ export class Login extends Component<RawLoginProps, RawLoginState > {
           error={!isValidPass}
           helperText={!isValidPass && "Некорректный пароль"}
         />
-        <Button 
-          variant="contained" 
-          color="primary" 
-          type="submit" 
-          style={ tabId === 1 ? { marginBottom: "20px" } : {} }
-          fullWidth>
-          Войти
-        </Button>
-        {tabId === 1 ? 
+        {tabId === 0 ? 
+          <Button 
+            variant="contained" 
+            color="primary" 
+            type="submit" 
+            fullWidth>
+            Войти
+          </Button> : 
           <Button variant="contained" type="submit" fullWidth>
             Зарегистрироваться
-          </Button> : null
+          </Button> 
+        }
+        {creatingInProgress &&
+          <Box display="flex" justifyContent="center" py={2}>
+            <CircularProgress />
+          </Box>
         }
       </form>
     );
   }
 }
+
+export const Login = connect(mapStateToProps, mapDispatchToProps)(RawLogin);

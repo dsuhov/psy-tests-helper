@@ -1,13 +1,15 @@
 import React from 'react';
 import { CssBaseline  } from "@material-ui/core";
-import { LoginScreen } from "@/Screens/LoginScreen/LoginScreen";
+import { Entry } from "@/Containers/Entry/Entry";
+import { Provider } from "react-redux";
+import { store } from "@/rdx/store";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <CssBaseline />
-      <LoginScreen />
-    </>
+      <Entry />
+    </Provider>
   );
 }
 

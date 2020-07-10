@@ -30,8 +30,8 @@ export class LoginScreen extends Component {
                 aria-label="Выбор способа входа"
                 variant="fullWidth"
               >
-                <Tab label="Пользователь" id="choose-login-type-0" />
-                <Tab label="Админ"  id="choose-login-type-1" />
+                <Tab label="Вход" id="choose-login-type-0" />
+                <Tab label="Регистрация"  id="choose-login-type-1" />
               </Tabs>
             </AppBar>
             <Box p={2} pt={3}>
