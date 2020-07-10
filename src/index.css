@@ -1,4 +1,9 @@
-body {
+body, html {
   margin: 0;
-  font-family: sans-serif;
+  height: 100%;
+  /* font-family: sans-serif; */
+}
+
+#root {
+  height: 100%;
 }

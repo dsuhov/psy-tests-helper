@@ -1,12 +1,13 @@
 import React from 'react';
+import { CssBaseline  } from "@material-ui/core";
+import { LoginScreen } from "@/Screens/LoginScreen/LoginScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hi
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <LoginScreen />
+    </>
   );
 }
 

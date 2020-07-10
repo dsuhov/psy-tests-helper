@@ -1,0 +1,9 @@
+$somecol: aqua;
+
+.Foo {
+  color: red;
+}
+
+.Bar {
+  background-color: $somecol;
+}
