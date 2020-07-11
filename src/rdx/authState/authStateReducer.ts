@@ -1,8 +1,9 @@
 import { authChange } from "./authStateActions";
 import { createReducer } from "@reduxjs/toolkit";
+import { User } from "firebase";
 
 type AuthState = {
-  user: any;
+  user: User | null;
   isChecking: boolean;
 };
 

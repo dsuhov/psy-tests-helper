@@ -7,7 +7,6 @@ function* logInUser({ payload }: ReturnType<typeof actions.userLoggedIn>) {
     yield call(loginAdminWithEmailAndPassword, payload);
     yield put(actions.userLoggedInSuccess());
   } catch (err) {
-    console.error(err)
     yield put(actions.userLoggedInFailed(err))
   }
 }

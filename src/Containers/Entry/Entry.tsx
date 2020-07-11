@@ -4,6 +4,7 @@ import { PsyTestsState } from "@/rdx/store";
 import { LoginScreen } from "@/Screens/LoginScreen/LoginScreen";
 import { CenterContent } from "@/Layout/CenterContent";
 import { CircularProgress } from "@material-ui/core";
+import { AdminScreen } from "@/Screens/AdminScreen";
 
 const getUser = (state: PsyTestsState) => {
   return state.user.user;
@@ -22,7 +23,7 @@ export const Entry: FC = () => {
   }
   
   if (user) {
-    return <span>User: {(user as any).email}</span>;
+    return <AdminScreen />;
   }
 
   return <LoginScreen />;

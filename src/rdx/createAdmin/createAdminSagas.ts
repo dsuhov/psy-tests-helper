@@ -7,7 +7,6 @@ function* createAdmin({ payload }: ReturnType<typeof actions.createAdmin>) {
     yield call(createAdminWithEmailAndPassword, payload);
     yield put(actions.createAdminSuccess());
   } catch (err) {
-    console.error(err)
     yield put(actions.createAdminFailed(err))
   }
 }

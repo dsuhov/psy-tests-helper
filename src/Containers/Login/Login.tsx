@@ -5,17 +5,19 @@ import { connect } from "react-redux";
 import { PsyTestsState } from "@/rdx/store";
 import * as adminCreateActions from "@/rdx/createAdmin/createAdminActions";
 import { userLoggedIn } from "@/rdx/userLogin/userLoginActions";
+import { LoginError } from "@/Components/LoginError";
 
 const mapStateToProps = (state: PsyTestsState, ownProps: { tabId: number }) => {
   return {
     tabId: ownProps.tabId,
-    creationInProgress: state.createAdmin.isCreating || state.userLogin.userisLogging
+    creationInProgress: state.createAdmin.isCreating || state.userLogin.userisLogging,
+    error: state.createAdmin.error || state.userLogin.userLoinError
   }
 }
 
 const mapDispatchToProps = {
   createAdmin: adminCreateActions.createAdmin,
-  signin: userLoggedIn
+  signin: userLoggedIn,
 }
 
 type RawLoginProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
@@ -158,6 +160,9 @@ class RawLogin extends Component<RawLoginProps, RawLoginState > {
           <Box display="flex" justifyContent="center" py={2}>
             <CircularProgress />
           </Box>
+        }
+        { this.props.error &&
+          <LoginError errMsg={this.props.error.message} />
         }
       </form>
     );

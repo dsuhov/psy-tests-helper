@@ -14,6 +14,7 @@ const adminCreatorSate: AdminCreatorState = {
 export const createAdminReducer = createReducer<AdminCreatorState>(adminCreatorSate, {
   [actions.createAdmin.type]: (state) => {
     state.isCreating = true;
+    state.error = null;
   },
   [actions.createAdminFailed.type]: (state, action) => {
     state.isCreating = false;
