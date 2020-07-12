@@ -22,8 +22,10 @@ export const Entry: FC = () => {
     </CenterContent>
   }
   
-  if (user) {
+  if (user && (user as any).admin) {
     return <AdminScreen />;
+  } else if (user && !(user as any).admin) {
+    return <h1>User page</h1>;
   }
 
   return <LoginScreen />;

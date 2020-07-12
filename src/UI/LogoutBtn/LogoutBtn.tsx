@@ -5,7 +5,7 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 
 export const LogoutBtn: FC = () => (
   <IconButton color="inherit"
-    aria-label="delete"
+    aria-label="Выход"
     onClick={() => auth.signOut()}
   ><ExitToAppRoundedIcon /></IconButton>
 );

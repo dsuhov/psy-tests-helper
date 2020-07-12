@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/functions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBVUjKZGYb30SYYASHwnZIxlVu0X9yfQA8",
@@ -16,4 +18,8 @@ firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 
-(window as any).auth = auth;
+export const db = firebase.firestore();
+
+// (window as any).createuser = firebase.functions().httpsCallable("createUser");
+
+(window as any).logOut = auth.signOut();

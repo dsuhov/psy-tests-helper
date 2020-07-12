@@ -4,11 +4,15 @@ import { Entry } from "@/Containers/Entry/Entry";
 import { Provider } from "react-redux";
 import { store } from "@/rdx/store";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 function App() {
   return (
     <Provider store={store}>
-      <CssBaseline />
-      <Entry />
+      <Router>
+        <CssBaseline />
+        <Entry />
+      </Router>
     </Provider>
   );
 }

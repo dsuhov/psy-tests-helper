@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { PsyTestsState } from "@/rdx/store";
 import * as adminCreateActions from "@/rdx/createAdmin/createAdminActions";
 import { userLoggedIn } from "@/rdx/userLogin/userLoginActions";
-import { LoginError } from "@/Components/LoginError";
+import { LoginError } from "@/Components";
 
 const mapStateToProps = (state: PsyTestsState, ownProps: { tabId: number }) => {
   return {

@@ -3,14 +3,24 @@ import { call, put, take } from "redux-saga/effects";
 import { auth } from "@/fbConfig";
 import { authChange } from "./authStateActions";
 
+
 function getAuthChannel() {
-  let authChannel;
-  if (!authChannel) {
-    authChannel = eventChannel(emit => {
-      const unsubscribe = auth.onAuthStateChanged(user => emit({ user }));
-      return unsubscribe;
+  let authChannel = eventChannel(emit => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        user.getIdTokenResult().then(idTokenResult => {
+          (user as any).admin = idTokenResult.claims.admin;
+          emit({ user });
+        });
+      } else {
+        emit({ user })
+      }
+      
+      
     });
-  }
+    return unsubscribe;
+  });
+
   return authChannel;
 }
 
