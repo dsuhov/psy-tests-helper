@@ -19,7 +19,3 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 
 export const db = firebase.firestore();
-
-// (window as any).createuser = firebase.functions().httpsCallable("createUser");
-
-(window as any).logOut = auth.signOut();
