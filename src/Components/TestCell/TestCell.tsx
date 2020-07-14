@@ -38,10 +38,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const TestCell: FC<CellTestProps> = ({ itemVals, itemNum, onChange }) => {
-  // const [grState, setGrState] = useState({
-  //   var1: 
-  // });
+export const TestCell = React.memo<CellTestProps>(({ itemVals, itemNum, onChange }) => {
 
   const changeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const val = evt.target.value;
@@ -65,4 +62,4 @@ export const TestCell: FC<CellTestProps> = ({ itemVals, itemNum, onChange }) => 
       ))}
     </Grid>
   );
-}
+});

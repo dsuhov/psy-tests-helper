@@ -1,0 +1,1 @@
+export { deprBeka } from "./deprBeka";
