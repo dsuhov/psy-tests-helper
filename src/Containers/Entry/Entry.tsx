@@ -5,6 +5,7 @@ import { LoginScreen } from "@/Screens/LoginScreen/LoginScreen";
 import { CenterContent } from "@/Layout/CenterContent";
 import { CircularProgress } from "@material-ui/core";
 import { AdminScreen } from "@/Screens/AdminScreen";
+import { UserScreen } from "@/Screens/UserScreen";
 
 const getUser = (state: PsyTestsState) => {
   return state.user.user;
@@ -25,7 +26,7 @@ export const Entry: FC = () => {
   if (user && (user as any).admin) {
     return <AdminScreen />;
   } else if (user && !(user as any).admin) {
-    return <h1>User page</h1>;
+    return <UserScreen />;
   }
 
   return <LoginScreen />;

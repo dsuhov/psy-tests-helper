@@ -7,6 +7,7 @@ import {
 } from "@/rdx/users/usersActions";
 import { PsyTestsState } from "@/rdx/store";
 import { UsersList } from "@/Components";
+import { Typography } from "@material-ui/core";
 
 const mapDispatchtoProps = {
   subscribeUC,
@@ -31,7 +32,7 @@ export class RawUsers extends PureComponent<UsersProps> {
   render() {
     return (
       <>
-        <h1>Users List</h1>
+        <Typography variant="h4" style={{ marginBottom: 20 }}>Ваши пользователи:</Typography>
         <UsersList users={this.props.usersData} />
         <AddUser />
       </>
