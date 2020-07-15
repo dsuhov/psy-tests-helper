@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { PsyTestsState } from "@/rdx/store";
 import { LogoutBtn } from "@/UI/LogoutBtn";
+import { UserDashboard } from "@/Containers/UserDashboard";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = (state: PsyTestsState) => ({
   user: state.user.user
@@ -22,9 +24,11 @@ export class RawUserScreen extends Component<RawUserScreenProps> {
               <Typography variant="h6" style={{ flexGrow: 1 }}>
                 {email}
               </Typography>
+              <Button component={Link} to="/tests" variant="outlined" color="inherit">Тесты</Button>
               <LogoutBtn />
             </Toolbar>
         </AppBar>
+        <UserDashboard />
       </>
     );
   }

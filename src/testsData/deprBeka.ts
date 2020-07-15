@@ -1,5 +1,6 @@
 export const deprBeka = {
   testTitle: "ШКАЛА ДЕПРЕССИИ А.БЕКА",
+  idTitle: "shkalaDepressiiBeka",
   instruction: "Прочитайте утверждение и выберите тот вариант ответа, который наиболее точно определяет ваше самочувствие в настоящий момент.",
   items: {
     item1: {

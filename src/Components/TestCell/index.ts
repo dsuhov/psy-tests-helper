@@ -1,1 +1,1 @@
-export { TestCell } from "./TestCell";
+export * from "./TestCell";

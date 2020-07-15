@@ -4,7 +4,7 @@ import { grey, green } from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-interface CellTestProps {
+export interface CellTestProps {
   itemVals: string[][];
   itemNum: string;
   onChange: (value: string, name: string) => void;
@@ -13,11 +13,14 @@ interface CellTestProps {
 const useStyles = makeStyles({
   groupWrapper: {
     border: `1px solid ${grey[400]}`,
-    borderRadius: 10
+    borderRadius: 8,
+    "&:not(:last-child)": {
+      marginBottom: 20
+    }
   },
   radioItem: {
     "&:not(:last-child)": {
-      borderRight: `1px solid ${grey[400]}`
+      borderRight: `1px solid ${grey[200]}`
     }
   },
   label: {

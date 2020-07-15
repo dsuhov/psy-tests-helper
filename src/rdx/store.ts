@@ -11,6 +11,8 @@ import { watchForFirebaseAuth } from "./authState/autStateSaga";
 import { watchUsersSnapshot } from "./users/usersSaga";
 import { usersReducer } from "./users/usersReducer";
 
+import { watchSendTest, passTestReducer } from "./passTest";
+
 const sagaMiddleware = createSagaMiddleware();
 
 function* rootSaga() {
@@ -18,6 +20,7 @@ function* rootSaga() {
   yield fork(createAdminSaga);
   yield fork(userLoginSaga);
   yield fork(watchUsersSnapshot);
+  yield fork(watchSendTest);
 }
 
 
@@ -26,7 +29,8 @@ export const store = configureStore({
     createAdmin: createAdminReducer,
     userLogin: userLoginReducer,
     user: authStateReducer,
-    users: usersReducer
+    users: usersReducer,
+    passTest: passTestReducer
   },
   middleware: [sagaMiddleware],
 });
