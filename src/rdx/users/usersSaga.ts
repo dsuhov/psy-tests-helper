@@ -1,6 +1,6 @@
 import { eventChannel } from "redux-saga";
 // import { call, put, take } from "redux-saga/effects";
-import { db } from "@/fbConfig";
+import { db, auth } from "@/fbConfig";
 import { take, call, put, cancel, cancelled, fork } from "redux-saga/effects";
 import {
   subscribeUC,
@@ -10,7 +10,7 @@ import {
 
 function getSnapshotChannell() {
   return eventChannel((emitter) => {
-    return db.collection('users').onSnapshot((snapshot) => {
+    return db.collection('users').where("createdBy", "==", auth.currentUser?.uid).onSnapshot((snapshot) => {
       const posts = snapshot.docs.map<IUsersData>(doc => {
         return {
           ...doc.data(),

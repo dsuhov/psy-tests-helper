@@ -52,6 +52,7 @@ export const AddUserDialog: FC<Props> = ({
         displayName: name,
         comment
       });
+      toggleDialogClose();
     }
     
   }
@@ -107,8 +108,7 @@ export const AddUserDialog: FC<Props> = ({
         </Button>
         <Button
           onClick={() => {
-            commitHandler()
-            toggleDialogClose();
+            commitHandler();
           }}
           variant="contained"
           color="primary"

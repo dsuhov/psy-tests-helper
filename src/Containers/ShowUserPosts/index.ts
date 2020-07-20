@@ -1,0 +1,1 @@
+export { ShowUserPosts } from "./ShowUserPosts";

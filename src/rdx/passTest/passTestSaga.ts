@@ -8,8 +8,7 @@ import { sendTest } from "@/api/sendTest";
 
 function* sendTestData({ payload }: ReturnType<typeof sendTestStart>) {
   try {
-    const response = yield call(sendTest, payload);
-    console.log(response);
+    yield call(sendTest, payload);
     
     yield put(sendTestSuccess());
   } catch (e) {

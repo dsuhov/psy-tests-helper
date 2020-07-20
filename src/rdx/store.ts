@@ -12,6 +12,7 @@ import { watchUsersSnapshot } from "./users/usersSaga";
 import { usersReducer } from "./users/usersReducer";
 
 import { watchSendTest, passTestReducer } from "./passTest";
+import { getTestsReducer, watchGetTests } from "./getTests";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -21,6 +22,7 @@ function* rootSaga() {
   yield fork(userLoginSaga);
   yield fork(watchUsersSnapshot);
   yield fork(watchSendTest);
+  yield fork(watchGetTests);
 }
 
 
@@ -30,7 +32,8 @@ export const store = configureStore({
     userLogin: userLoginReducer,
     user: authStateReducer,
     users: usersReducer,
-    passTest: passTestReducer
+    passTest: passTestReducer,
+    userTests: getTestsReducer
   },
   middleware: [sagaMiddleware],
 });

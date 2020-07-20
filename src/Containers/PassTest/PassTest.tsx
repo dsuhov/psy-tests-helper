@@ -53,7 +53,7 @@ class RawPassTest extends Component<IPassTestProps, any> {
   onReadyHandler = () => {
     try {
       const resultVal = (Object.values(this.state.items)).reduce((result, { value }: any) => {
-        if (value == -1) {
+        if (parseInt(value) === -1) {
           throw new Error("Не весть тест пройден")
         }
         return result + value;
@@ -77,7 +77,7 @@ class RawPassTest extends Component<IPassTestProps, any> {
   }
 
   render() {
-    const { sending, sendStatus, error } = this.props;
+    const { sending, sendStatus } = this.props;
 
     return sendStatus === "ok" ? <Redirect to="/tests" /> : (
       <Paper style={{ padding: 20, marginBottom: 100 }} elevation={3}>

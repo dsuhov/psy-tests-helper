@@ -6,6 +6,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { PsyTestsState } from "@/rdx/store";
 import { deprBeka } from "@/testsData/deprBeka";
+import { trevBeka } from "@/testsData";
 
 interface IPassTestProps {
   testType: string;
@@ -21,11 +22,9 @@ export const passTestWithDb = (
   const error = useSelector(({ passTest: { error } }: PsyTestsState) => error);
   const uid = useSelector(({ user }: PsyTestsState) => user.user!.uid);
 
-  console.log(sending, sendStatus );
-  
-
   switch (props.testType) {
     case "shkalaDepressiiBeka": testData = deprBeka; break;
+    case "shkalaTrevojnBeka": testData = trevBeka; break;
     default: return null;
   }
 

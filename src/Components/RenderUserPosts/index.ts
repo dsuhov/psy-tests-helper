@@ -1,0 +1,1 @@
+export { RenderUserPosts } from "./RenderUserPosts";
