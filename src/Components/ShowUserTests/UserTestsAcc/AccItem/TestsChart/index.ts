@@ -1,0 +1,1 @@
+export { TestsChart } from "./TestsChart";

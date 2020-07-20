@@ -4,3 +4,12 @@ interface ITestData {
   result: number;
   date: string;
 }
+
+
+interface ITestsDataSorted {
+  [key: string]: Array<{
+    title: string;
+    date: string;
+    result: number;
+  }>;
+}

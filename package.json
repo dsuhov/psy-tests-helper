@@ -162,6 +162,7 @@
     "@storybook/react": "^5.3.19",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/recharts": "^1.8.14",
     "react-scripts": "^3.4.1"
   }
 }
