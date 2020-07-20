@@ -9,9 +9,9 @@ import Paper from "@material-ui/core/Paper";
 export const UserTestsAcc: FC<{
   data: ITestsDataSorted
 }> = ({ data }) => {
-  const dataKeys = Object.keys(data);
-
   return <Paper>
-    <AccItem title={data[dataKeys[0]][0].title} accItemData={data[dataKeys[0]]} />
+    {Object.entries(data).map(dataItem => (
+      <AccItem title={dataItem[1][0].title} accItemData={dataItem[1]} key={dataItem[1][0].title} />
+    ))}
   </Paper>;
 }

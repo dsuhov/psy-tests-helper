@@ -14,6 +14,7 @@ import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import Divider from "@material-ui/core/Divider";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { grey } from "@material-ui/core/colors";
+import { TestsListTable } from "./TestsListTable";
 
 const useSyles = makeStyles((theme: Theme) => createStyles({
   details: {
@@ -60,7 +61,7 @@ export const AccItem: FC<{
         </Box>
         {displayState === "chart" ? 
           <TestsChart data={accItemData} /> :
-          <h4>Table list</h4>
+          <TestsListTable testData={accItemData} />
         }
         
       </AccordionDetails>
