@@ -1,1 +1,1 @@
-export { ShowUserTests } from "./ShowUserTests";
+export { UserTestsAcc } from "./UserTestsAcc";

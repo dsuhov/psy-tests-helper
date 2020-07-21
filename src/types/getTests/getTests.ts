@@ -7,9 +7,12 @@ interface ITestData {
 
 
 interface ITestsDataSorted {
-  [key: string]: Array<{
+  [key: string]: {
     title: string;
-    date: string;
-    result: number;
-  }>;
+    legend: string;
+    content: Array<{
+      date: string;
+      result: number;
+    }>;
+  }
 }

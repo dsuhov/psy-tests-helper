@@ -28,6 +28,29 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
 
   render() {
     const { testsReqData, isRequesting } = this.props;
+    let dataSorted: ITestData[] | null = null;
+
+    if (testsReqData !== null && testsReqData.length > 0) {
+      const dataCopy = testsReqData.map(({ date, title, idName, result }) => {
+        return {
+          date,
+          title,
+          idName,
+          result
+        }
+      })
+
+      dataSorted = dataCopy.sort((a, b) => {
+        if (new Date(a.date) > new Date(b.date)) {
+          return -1;
+        }
+        if (new Date(a.date) < new Date(b.date)) {
+          return 1;
+        }
+  
+        return 0;
+      });
+    }
     
     return (
       <>
@@ -36,7 +59,7 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
             <CircularProgress />
           </Box>
         }
-        {testsReqData && <RenderUserPosts testData={testsReqData} />}
+        {dataSorted && <RenderUserPosts testData={dataSorted} />}
       </>
     );
   }

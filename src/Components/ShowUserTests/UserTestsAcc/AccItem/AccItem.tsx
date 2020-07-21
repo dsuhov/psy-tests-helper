@@ -10,8 +10,6 @@ import Box from "@material-ui/core/Box";
 import IconButton from '@material-ui/core/IconButton';
 import {ReactComponent as TableIcon} from "../../../../Assets/table.svg";
 import {ReactComponent as ChartIcon} from "../../../../Assets/chart.svg";
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import Divider from "@material-ui/core/Divider";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { grey } from "@material-ui/core/colors";
 import { TestsListTable } from "./TestsListTable";
@@ -60,7 +58,7 @@ export const AccItem: FC<{
           </IconButton>
         </Box>
         {displayState === "chart" ? 
-          <TestsChart data={accItemData} /> :
+          <TestsChart data={accItemData.reverse()} /> :
           <TestsListTable testData={accItemData} />
         }
         
