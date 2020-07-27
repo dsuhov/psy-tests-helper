@@ -31,8 +31,8 @@ export const UserScreen: React.FC = () => {
             <Typography variant="h6" style={{ flexGrow: 1 }} className={classes.userEmail}>
               {email}
             </Typography>
-            <Button component={Link} to="/mytests" variant="outlined" color="inherit" style={{ marginRight: 20 }}>Мои тесты</Button>
-            <Button component={Link} to="/tests" variant="outlined" color="inherit" style={{ marginRight: 20 }}>Тесты</Button>
+            <Button component={Link} to="/mytests" variant="outlined" color="inherit" style={{ marginRight: 20 }}>Пройденные тесты</Button>
+            <Button component={Link} to="/tests" variant="outlined" color="inherit" style={{ marginRight: 20 }}>Доступные тесты</Button>
             <div className={classes.logoutBtn}>
               <LogoutBtn />
             </div>

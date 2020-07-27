@@ -1,0 +1,1 @@
+export { BeznadBeka } from "./BeznadBeka";
