@@ -27,6 +27,17 @@ export const TestsScreen: React.FC = () => {
           </CardActions>
         </Card>
       </Grid>
+
+      <Grid item lg={4} xs={12} sm={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" align="center">Шкала Безнадёжности Бека</Typography>
+          </CardContent>
+          <CardActions>
+            <Button variant="outlined" size="large" fullWidth component={RouterLink} to="/tests/beznadBeka">Пройти</Button>
+          </CardActions>
+        </Card>
+      </Grid>
     </Grid>
   );
 }

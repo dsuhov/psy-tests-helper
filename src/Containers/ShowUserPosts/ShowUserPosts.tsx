@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import  { connect } from "react-redux";
 import { getTestsStart } from "@/rdx/getTests/getTestsACctions";
 import { PsyTestsState } from "@/rdx/store";
-import { RenderUserPosts } from "@/Components";
+import { UserTestsAcc } from "@/Components";
 
 import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -28,7 +28,7 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
 
   render() {
     const { testsReqData, isRequesting } = this.props;
-    let dataSorted: ITestData[] | null = null;
+    let preparedData: ITestsDataSorted | null = null;
 
     if (testsReqData !== null && testsReqData.length > 0) {
       const dataCopy = testsReqData.map(({ date, title, idName, result }) => {
@@ -40,7 +40,7 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
         }
       })
 
-      dataSorted = dataCopy.sort((a, b) => {
+      const dataSorted = dataCopy.sort((a, b) => {
         if (new Date(a.date) > new Date(b.date)) {
           return -1;
         }
@@ -50,7 +50,24 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
   
         return 0;
       });
+
+      preparedData = dataSorted!.reduce<ITestsDataSorted>((result: any, current) => {
+        
+        if (!result[current.idName]) {
+          result[current.idName] = {
+            title: current.title,
+            legen: "Place for description",
+            content: []
+          }
+        }
+
+        result[current.idName].content.push({ date: current.date, result: current.result });
+  
+        return result;
+  
+      }, {});
     }
+
     
     return (
       <>
@@ -59,7 +76,7 @@ export class RawShowUserPosts extends Component<ShowUserPostsProps> {
             <CircularProgress />
           </Box>
         }
-        {dataSorted && <RenderUserPosts testData={dataSorted} />}
+        {preparedData && <UserTestsAcc data={preparedData} />}
       </>
     );
   }

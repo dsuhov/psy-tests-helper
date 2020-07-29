@@ -8,7 +8,7 @@ export default { title: 'Beznad Beka' };
 
 export const testWithData = () => <div style={{ maxWidth: 800 }}>
   <RawBeznadBeka
-    data={beznadBeka}
+    testData={beznadBeka}
     sending={false}
     sendStatus=""
     error={null}

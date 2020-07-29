@@ -1,7 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
+import { passTestWithDb } from "@/HOC/passTestWithDb";
+import {Redirect } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +15,7 @@ import LinearProgress, { LinearProgressProps } from '@material-ui/core/LinearPro
 import Box from '@material-ui/core/Box';
 
 interface RawBeznadBekaProps {
-  data: IBeznadBekaData,
+  testData: IBeznadBekaData,
   sending: boolean;
   sendStatus: string;
   error: string | null;
@@ -21,7 +23,7 @@ interface RawBeznadBekaProps {
   onExit: () => void;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     cardContainer: {
       display: "flex",
@@ -46,18 +48,18 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number, c
 
 
 
-export const RawBeznadBeka: FC<RawBeznadBekaProps> = ({ data, sending, sendStatus, error, onReady, onExit }) => {
+export const RawBeznadBeka: FC<RawBeznadBekaProps> = ({ testData, sending, sendStatus, error, onReady, onExit }) => {
   const classes = useStyles();
-  const [testState, setTestState] = useState<number[]>(new Array(Object.keys(data.items).length).fill(-1));
+  const [testState, setTestState] = useState<number[]>(new Array(Object.keys(testData.items).length).fill(-1));
   const [currStep, setCurrStep] = useState(0);
-  const [dataAsArray] = useState(Object.entries(data.items));
+  const [dataAsArray] = useState(Object.entries(testData.items));
   const [filled, setFilled] = useState(0);
   const [testPassed, setTestPassed] = useState(false);
   const [turning, setTurning] = useState(false);
 
   useEffect(() => {
     return () => onExit();
-  }, [data.items, onExit]);
+  }, [testData.items, onExit]);
 
   const onChooseHandler = (variant: boolean) => {
     const newTestState = [...testState];
@@ -82,21 +84,28 @@ export const RawBeznadBeka: FC<RawBeznadBekaProps> = ({ data, sending, sendStatu
 
     }, 300);
   }
-   
+  
   const handleSubmit = () => {
     const result = testState.reduce((res, curr) => res + curr);
-    console.log(result);
-    
+
+    onReady(
+      testData.testTitle,
+      testData.idTitle,
+      result
+      );
   }
 
   const moveNext = () => setCurrStep(currStep + 1);
   const movePrev = () => setCurrStep(currStep - 1);
 
+  if (sendStatus === "ok") {
+    return <Redirect to="/tests" />;
+  }
 
   return (
     <>
-      <Typography variant="h5" style={{ marginBottom: 14 }}>{data.testTitle}</Typography>
-      <Typography variant="body1" style={{ marginBottom: 30 }}>{data.instruction}</Typography>
+      <Typography variant="h5" style={{ marginBottom: 14 }}>{testData.testTitle}</Typography>
+      <Typography variant="body1" style={{ marginBottom: 30 }}>{testData.instruction}</Typography>
 
       {!testPassed ? <div className={classes.cardContainer}>
         <Card variant="outlined">
@@ -168,3 +177,5 @@ export const RawBeznadBeka: FC<RawBeznadBekaProps> = ({ data, sending, sendStatu
     </>
   );
 }
+
+export const BeznadBeka = passTestWithDb(RawBeznadBeka);

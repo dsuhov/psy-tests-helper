@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { PsyTestsState } from "@/rdx/store";
 import { deprBeka } from "@/testsData/deprBeka";
 import { trevBeka } from "@/testsData";
+import { beznadBeka } from "@/testsData/beznadBeka";
 
 interface IPassTestProps {
   testType: string;
@@ -25,6 +26,7 @@ export const passTestWithDb = (
   switch (props.testType) {
     case "shkalaDepressiiBeka": testData = deprBeka; break;
     case "shkalaTrevojnBeka": testData = trevBeka; break;
+    case "beznadBeka": testData = beznadBeka; break;
     default: return null;
   }
 
